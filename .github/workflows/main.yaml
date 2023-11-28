@@ -37,7 +37,7 @@ jobs:
         run: sdkmanager --install 'system-images;android-30;google_apis_playstore;x86_64'
 
       - name: Set up Android SDK
-        run: |
+        run: | 
           wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip
           unzip -qq android-sdk-tools.zip -d android-sdk-tools
           echo "export ANDROID_HOME=$HOME/android-sdk-tools" >> $GITHUB_ENV
