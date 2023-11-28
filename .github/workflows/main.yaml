@@ -46,7 +46,7 @@ jobs:
           boot_complete=""
           while [[ $boot_complete != *"1"* ]]; do
             sleep 5
-            boot_complete=$(adb -e shell getprop sys.boot_completed 2>&`)
+            boot_complete=$(adb -e shell getprop sys.boot_completed 2>&1)
           done
 
       - name: Install Application
