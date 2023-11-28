@@ -33,10 +33,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Launch Emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
+      - name: Create emulator
+        run: echo no | $ANDROID_HOME/tools/bin/avdmanager create avd -n test -k "system-images;android-30;google_apis;x86_64"
+
+      - name: Start emulator
+        run: $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window
 
       - name: Install Application
         run: ./gradlew installDebug
