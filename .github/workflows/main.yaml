@@ -39,13 +39,6 @@ jobs:
       - name: setting up env path
         run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/33.0.2" >> $GITHUB_PATH
 
-      - name: Set up Android SDK
-        run: | 
-          wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip
-          unzip -qq android-sdk-tools.zip -d android-sdk-tools
-          echo "export ANDROID_HOME=$HOME/android-sdk-tools" >> $GITHUB_ENV
-          echo "export PATH=$PATH:$HOME/androiRun echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/33.0.2" >> $GITHUB_PATHd-sdk-tools/tools/bin:$HOME/android-sdk-tools/emulator:$HOME/android-sdk-tools/platform-tools" >> $GITHUB_ENV
-
       - name: Create emulator
         run: echo no | avdmanager create avd -n TestAVD -k "system-images;android-30;google_apis_playstore;x86_64" -p $ANDROID_HOME/mid/avd
       
@@ -60,7 +53,5 @@ jobs:
 
       - name: Wait for emulator to launch
         run: |
-          while [[ -z "$(adb devices | grep emulator)" ]]; do
-            echo "waiting for device to boot up"
-            sleep 5
-          done
+          sleep 240
+          adb devices
