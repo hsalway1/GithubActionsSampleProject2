@@ -43,7 +43,8 @@ jobs:
 
       - name: Wait for emulator to launch
         run: |
-          while [ $(adb devices | grep emulator)=="" ]; do
+          while [[ -z "$(adb devices | grep emulator)" ]]; do
+            echo "waiting for device to boot up"
             sleep 5
           done
 
