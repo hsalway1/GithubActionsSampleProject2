@@ -41,19 +41,11 @@ jobs:
         run: |
           $ANDROID_HOME/emulator/emulator-avd test -no-skin -no-audio -no-window &
 
-      - name: Wait for emulator to start
-        run: |
-          BOOT_ANIMATION=""
-          while [[ -z "$BOOT_ANIMATION" ]]; do
-            BOOT_ANIMATION=$(adb -e shell getprop init.svc.bootanim 2>$1)
-              echo "Waiting for emulator to start..."
-              sleep 5
-          done
+      - name: Install Application
+        run: ./gradlew installDebug
 
-          # install application
-          ./gradlew installDebug
+      - name: Launch application
+        run: abd shell am start -n com.example.githubactionssampleproject2/com.example.githubactionssampleproject2.MainActivity
 
-          # get process info
-          adb shell top | grep com.example
-
-          exit 0
+      - name: Memory monitoring
+        run: adb shell dumpsys meminfo com.example.githubactionssampleproject2
