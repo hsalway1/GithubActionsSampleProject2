@@ -57,3 +57,12 @@ jobs:
 
       - name: List of emulators
         run: avdmanager list avd
+
+      - name: Wait for emulator to start
+        run: |
+          BOOT_ANIMATION=""
+          while [[ -z "$BOOT_ANIMATION" ]]; do
+            BOOT_ANIMATION=$(adb -e shell getprop init.svc.bootanim 2>$1)
+              echo "Waiting for emulator to start..."
+              sleep 5
+          done
