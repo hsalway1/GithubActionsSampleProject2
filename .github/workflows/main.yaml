@@ -41,6 +41,12 @@ jobs:
         run: |
           $ANDROID_HOME/emulator/emulator-avd test -no-skin -no-audio -no-window &
 
+      - name: Wait for emulator to launch
+        run: |
+          while [ $(adb devices | grep emulator)=="" ]; do
+            sleep 5
+          done
+
       - name: Install Application
         run: ./gradlew installDebug
 
