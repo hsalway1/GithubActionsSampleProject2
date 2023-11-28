@@ -33,5 +33,8 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build SampleApplication
-        run: ./gradlew --no-daemon build
+      - name: Install Application
+        run: ./gradlew installDebug
+
+      - name: Process info
+        run: adb shell top
