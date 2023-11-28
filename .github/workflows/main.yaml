@@ -35,6 +35,9 @@ jobs:
 
       - name: executable gradlew
         run: chmod +x gradlew
+
+      - name: sdkmanager list
+        run: sdkmanager --list
   
       - name: Build emulator
         uses: reactivecircus/android-emulator-runner@v2
