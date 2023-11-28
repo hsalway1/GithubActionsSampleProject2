@@ -36,21 +36,21 @@ jobs:
       - name: Install system image
         run: sdkmanager --install 'system-images;android-30;google_apis_playstore;x86_64'
 
+      - name: Set up Android SDK
+        run: |
+          wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip
+          unzip -qq android-sdk-tools.zip -d android-sdk-tools
+          echo "export ANDROID_HOME=$HOME/android-sdk-tools" >> $GITHUB_ENV
+          echo "export PATH=$PATH:$HOME/android-sdk-tools/tools/bin:$HOME/android-sdk-tools/emulator:$HOME/android-sdk-tools/platform-tools" >> $GITHUB_ENV
+
       - name: Create emulator
         run: echo no | avdmanager create avd -n TestAVD -k "system-images;android-30;google_apis_playstore;x86_64" -p $ANDROID_HOME/mid/avd
-
-      - name: Add Andriod SDK tools to PATH
-        run: echo "export PATH=\$PATH:~$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
+      
+      - name: Accept licenses
+        run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
       - name: Start emulator
         run: emulator -avd TestAVD -no-skin -no-audio -no-window &
 
       - name: List of emulators
         run: avdmanager list avd
-
-      - name: Wait for emulator to launch
-        run: |
-          while [[ -z "$(adb devices | grep emulator)" ]]; do
-            echo "waiting for device to boot up"
-            sleep 5
-          done
