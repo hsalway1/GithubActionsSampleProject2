@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'terminus'
+          distribution: 'temurin'
 
       - name: Setup Android SDK
         uses: actions/setup-java@v1
