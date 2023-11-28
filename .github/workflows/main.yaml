@@ -50,8 +50,10 @@ jobs:
               sleep 5
           done
 
-      - name: Install Application
-        run: ./gradlew installDebug
+          # install application
+          ./gradlew installDebug
 
-      - name: Process info
-        run: adb shell top | grep com.example
+          # get process info
+          adb shell top | grep com.example
+
+          exit 0
