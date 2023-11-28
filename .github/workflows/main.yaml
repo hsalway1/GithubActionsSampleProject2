@@ -43,10 +43,11 @@ jobs:
 
       - name: Wait for emulator to start
         run: |
-          boot_complete=""
-          while [[ $boot_complete != *"1"* ]]; do
-            sleep 5
-            boot_complete=$(adb -e shell getprop sys.boot_completed 2>&1)
+          BOOT_ANIMATION=""
+          while [[ -z "$BOOT_ANIMATION" ]]; do
+            BOOT_ANIMATION=$(adb -e shell getprop init.svc.bootanim 2>$1)
+              echo "Waiting for emulator to start..."
+              sleep 5
           done
 
       - name: Install Application
