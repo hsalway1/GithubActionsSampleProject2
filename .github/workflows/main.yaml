@@ -43,7 +43,7 @@ jobs:
           EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
 
       - name: Executable permission to gradle
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
         
       - name: Install Application
         run: ./gradlew installDebug
