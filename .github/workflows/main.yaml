@@ -32,6 +32,9 @@ jobs:
         run: |
            yes Y | sdkmanager --licenses
            sdkmanager --install ${ANDROID_SDK_PACKAGES}
+
+      - name: executable gradlew
+        run: chmod +x gradlew
   
       - name: Build emulator
         uses: reactivecircus/android-emulator-runner@v2
