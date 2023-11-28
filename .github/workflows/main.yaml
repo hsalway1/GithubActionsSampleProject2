@@ -44,3 +44,10 @@ jobs:
 
       - name: List of emulators
         run: avdmanager list avd
+
+      - name: Wait for emulator to launch
+        run: |
+          while [[ -z "$(adb devices | grep emulator)" ]]; do
+            echo "waiting for device to boot up"
+            sleep 5
+          done
