@@ -40,7 +40,7 @@ jobs:
         run: echo no | avdmanager create avd -n TestAVD -k "system-images;android-30;google_apis_playstore;x86_64" -p $ANDROID_HOME/mid/avd
 
       - name: Add Andriod SDK tools to PATH
-        run: echo "export PATH=\$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
+        run: echo "export PATH=\$PATH:~$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
 
       - name: Start emulator
         run: emulator -avd TestAVD -no-skin -no-audio -no-window &
