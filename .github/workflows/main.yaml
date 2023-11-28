@@ -41,18 +41,5 @@ jobs:
         run: |
           $ANDROID_HOME/emulator/emulator-avd test -no-skin -no-audio -no-window &
 
-      - name: Wait for emulator to launch
-        run: |
-          while [[ -z "$(adb devices | grep emulator)" ]]; do
-            echo "waiting for device to boot up"
-            sleep 5
-          done
-
-      - name: Install Application
-        run: ./gradlew installDebug
-
-      - name: Launch application
-        run: abd shell am start -n com.example.githubactionssampleproject2/com.example.githubactionssampleproject2.MainActivity
-
-      - name: Memory monitoring
-        run: adb shell dumpsys meminfo com.example.githubactionssampleproject2
+      - name: list of emulators
+        run: avdmanager list avd
