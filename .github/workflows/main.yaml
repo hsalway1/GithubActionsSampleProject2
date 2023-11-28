@@ -33,9 +33,14 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Create emulator
-        run: |
-          echo avdmanager create avd -n "TestAVD" -k "system-images;android-30;google_apis;x86"
+      - name: Install system image
+        run: sdkmanager --install 'system-images;android-30;google_apis_playstore;x86_64'
 
-      - name: list of emulators
+      - name: Create emulator
+        run: echo no | avdmanager create avd -n TestAVD -k "system-images;android-30;google_apis_playstore;x86_64" -p $ANDROID_HOME/mid/avd
+
+      - name: Start emulator
+        run: $ANDROID_HOME/mid/avd ./emulator -avd TestAVD -no-skin -no-audio -no-window &
+
+      - name: List of emulators
         run: avdmanager list avd
