@@ -42,5 +42,17 @@ jobs:
           chmod +x ./start_emu_headless.sh
           EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
 
+      - name: Executable permission to gradle
+        run: chmod +x gradlew
+        
+      - name: Install Application
+        run: ./gradlew installDebug
+
+      - name: Launch Application 
+        run: adb shell am start -n com.example.githubactionssampleproject2/com.example.githubactionssampleproject2.MainActivity
+
+      - name: Get application's memory utilization
+        run: adb shell dumpsys meminfo com.example.githubactionssampleproject2
+        
       - name: Print processes
         run: adb shell top
