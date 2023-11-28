@@ -33,8 +33,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: run tests
+      - name: Launch Emulator
         uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
 
       - name: Install Application
         run: ./gradlew installDebug
