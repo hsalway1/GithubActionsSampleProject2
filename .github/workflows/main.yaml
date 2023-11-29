@@ -44,3 +44,6 @@ jobs:
 
       - name: Print processes
         run: adb shell top
+
+      - name: Print processes
+        run: adb shell top
