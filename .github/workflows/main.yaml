@@ -44,14 +44,17 @@ jobs:
       
       - name: Accept licenses
         run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+        
+      - name: List of emulators
+        run: avdmanager list avd
 
+      - name: List of AVDs
+        run: emulator -list-avds
+        
       - name: Start emulator
         run: |
           apt-get install libpulse0:i386
           emulator -avd $EMULATOR_NAME
-
-      - name: List of emulators
-        run: avdmanager list avd
 
       - name: Wait for emulator to launch
         run: |
