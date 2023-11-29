@@ -53,7 +53,7 @@ function launch_emulator () {
 
 function check_emulator_status () {
   runtime=0
-  while [[ -z "$(adb devices | grep emulator)" ]]; do
+  while [[ "$(adb shell getprop sys.boot_completed 2>&1)" == "1" ]]; do
     echo "waiting for emulator to boot up"
     sleep 5
     (( runtime+=5 ))
