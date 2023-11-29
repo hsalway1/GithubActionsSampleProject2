@@ -11,7 +11,7 @@ on:
 env:
   ANDROID_ARCH: x86_64
   ANDROID_TARGET: google_apis_playstore
-  API_LEVEL: 30
+  API_LEVEL: 33
   ANDROID_BUILD_TOOLS_VERSION: 33.0.2
   ANDROID_SDK_PACKAGES: system-images;android-33;google_apis_playstore;x86_64 platforms;android-33 build-tools;33.0.2 platform-tools emulator
   EMULATOR_TIMEOUT: 350
@@ -34,7 +34,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install system image
-        run: sdkmanager --install 'system-images;android-30;google_apis_playstore;x86_64'
+        run: sdkmanager --install 'system-images;android-33;google_apis_playstore;x86_64'
 
       - name: setting up env path
         run: echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/33.0.2" >> $GITHUB_PATH
