@@ -41,6 +41,9 @@ jobs:
         run: |
           emulator -avd ${EMULATOR_NAME} -no-accel -no-audio -no-window
 
+      - name: List AVDs
+        run: emulator -list-avds
+
       - name: Check if emulator is launched
         run: |
           sleep 2
