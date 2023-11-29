@@ -64,7 +64,7 @@ function check_emulator_status () {
     fi
     done
 
-    echo "Emulator started"
+    echo "Emulator started!"
     exit 0
 };
 
