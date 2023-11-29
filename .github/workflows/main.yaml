@@ -54,23 +54,6 @@ jobs:
       - name: Start emulator
         run: chmod +x ./start_emu_headless.sh
 
-      - name: Wait for emulator to launch
-        run: |
-          runtime=0
-          while [[ -z "$(adb devices | grep emulator)" ]]; do
-            echo "waiting for emulator to boot up"
-            sleep 5
-            (( runtime+=5 ))
-
-            if (( $runtime > 240 )); then
-              echo "Timeout"
-              exit 1
-            fi
-          done
-
-          echo "Emulator started"
-          exit 0
-
       - name: Print processes
         run: adb shell top
 
