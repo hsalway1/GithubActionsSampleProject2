@@ -57,3 +57,6 @@ jobs:
 
       - name: Print processes
         run: adb shell top
+
+      - name: memory info
+        run: adb shell dumpsys meminfo com.example.githubactionssampleproject2
