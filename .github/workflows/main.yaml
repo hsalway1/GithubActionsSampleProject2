@@ -66,6 +66,7 @@ jobs:
             if [ $runtime -ge 240 ]; then
               exit 1
             fi
+          done
 
           echo "Emulator started"
           exit 0
