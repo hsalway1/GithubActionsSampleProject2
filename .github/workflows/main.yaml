@@ -63,7 +63,8 @@ jobs:
             sleep 5
             runtime+=5
 
-            if [ $runtime -ge 240 ]; then
+            if (( $runtime > 240 )); then
+              echo "Timeout"
               exit 1
             fi
           done
