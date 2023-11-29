@@ -52,9 +52,7 @@ jobs:
         run: emulator -list-avds
         
       - name: Start emulator
-        run: |
-          apt-get install libpulse0:i386
-          emulator -avd $EMULATOR_NAME
+        run: emulator -avd "$EMULATOR_NAME"
 
       - name: Wait for emulator to launch
         run: |
