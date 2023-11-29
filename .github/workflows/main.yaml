@@ -61,7 +61,7 @@ jobs:
           while [[ -z "$(adb devices | grep emulator)" ]]; do
             echo "waiting for emulator to boot up"
             sleep 5
-            runtime+=5
+            (( runtime+=5 ))
 
             if (( $runtime > 240 )); then
               echo "Timeout"
