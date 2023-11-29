@@ -52,7 +52,7 @@ jobs:
         run: emulator -list-avds
         
       - name: Start emulator
-        run: emulator -avd "$EMULATOR_NAME" -no-audio -no-window -qemu -use-system-libs -arm &
+        run: emulator -avd "$EMULATOR_NAME" -no-audio -no-window -qemu -use-system-libs -"accel off" &
 
       - name: Wait for emulator to launch
         run: |
