@@ -46,7 +46,9 @@ jobs:
         run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
       - name: Start emulator
-        run: emulator -avd $EMULATOR_NAME
+        run: |
+          apt-get install libpulse0:i386
+          emulator -avd $EMULATOR_NAME
 
       - name: List of emulators
         run: avdmanager list avd
