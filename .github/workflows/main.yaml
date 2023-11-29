@@ -39,8 +39,33 @@ jobs:
 
       - name: Launch emulator
         run: |
-          chmod +x ./start_emu_headless.sh
-          EMULATOR_TIMEOUT=$EMULATOR_TIMEOUT EMULATOR_NAME=$EMULATOR_NAME ./start_emu_headless.sh
+          emulator -avd ${EMULATOR_NAME} -no-accel -no-audio -no-window
+
+      - name: Check if emulator is launched
+        run: |
+          sleep 2
+          if [ -z "$(adb devices | grep emulator)" ]; then
+            echo "Emulator is not launched"
+          else
+            echo "Emulator is launched"
+          fi
+
+      - name: Wait for emulator
+        run: |
+          runtime=0
+          while [[ "$(adb shell getprop sys.boot_completed 2>&1)" != "1" ]]; do
+            echo "waiting for emulator"
+            sleep 5
+            (( runtime+=5 ))
+
+            if (( runtime > 240 )); then
+              echo "Timed out"
+              exit 1
+            fi
+          done
+
+          echo "Emulator is ready"
+          exit 0
 
       - name: Print processes
         run: adb shell top
