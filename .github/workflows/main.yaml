@@ -39,7 +39,7 @@ jobs:
 
       - name: Launch emulator
         run: |
-          emulator -avd ${EMULATOR_NAME} -no-accel -no-audio -no-window
+          emulator -avd ${EMULATOR_NAME} -no-accel -no-window -no-snapshot -screen no-touch -noaudio -memory 2048 -no-boot-anim -camera-back none -gpu off &
 
       - name: List AVDs
         run: emulator -list-avds
