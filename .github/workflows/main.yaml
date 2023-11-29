@@ -67,7 +67,7 @@ jobs:
             fi
           done
 
-          echo "Emulator is ready"
+          echo "Emulator is ready!"
           exit 0
 
       - name: Print processes
